@@ -94,9 +94,6 @@
         </form>
     </div>
 
-    <p class="text-center text-xs text-gray-300 mt-5">
-        <a href="{{ route('login') }}" class="hover:text-gray-400 transition-colors">← Kembali ke Login Mahasiswa</a>
-    </p>
 </div>
 
 </body>

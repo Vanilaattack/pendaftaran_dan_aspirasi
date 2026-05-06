@@ -39,6 +39,8 @@ Route::middleware('auth:mahasiswa')->prefix('mahasiswa')->name('mahasiswa.')->gr
 */
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('guest')->group(function () {
+        Route::get('/setup',  [AdminAuthController::class, 'showSetup'])->name('setup');
+        Route::post('/setup', [AdminAuthController::class, 'setup'])->name('setup.post');
         Route::get('/login',  [AdminAuthController::class, 'showLogin'])->name('login');
         Route::post('/login', [AdminAuthController::class, 'login'])->name('login.post');
     });
