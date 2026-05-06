@@ -6,15 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Aspiration extends Model
 {
+    protected $table = 'aspirations';
+
     public $timestamps = false;
 
-    protected $fillable = [
-        'nama_pengirim',
-        'judul_aspirasi',
-        'pesan',
-    ];
+    protected $fillable = ['nama_pengirim', 'judul', 'isi_aspirasi'];
 
-    protected $casts = [
-        'created_at' => 'datetime',
-    ];
+    protected $casts = ['created_at' => 'datetime'];
 }

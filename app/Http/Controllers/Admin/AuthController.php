@@ -10,10 +10,9 @@ class AuthController extends Controller
 {
     public function showLogin()
     {
-        if (Auth::check()) {
+        if (Auth::guard('web')->check()) {
             return redirect()->route('admin.dashboard');
         }
-
         return view('admin.login');
     }
 
@@ -27,24 +26,20 @@ class AuthController extends Controller
             'password.required' => 'Password wajib diisi.',
         ]);
 
-        $credentials = [
-            'username' => $request->username,
-            'password' => $request->password,
-        ];
-
-        if (Auth::attempt($credentials, $request->boolean('remember'))) {
+        if (Auth::guard('web')->attempt(
+            ['username' => $request->username, 'password' => $request->password],
+            $request->boolean('remember')
+        )) {
             $request->session()->regenerate();
             return redirect()->intended(route('admin.dashboard'));
         }
 
-        return back()->withErrors([
-            'username' => 'Username atau password salah.',
-        ])->onlyInput('username');
+        return back()->withErrors(['username' => 'Username atau password salah.'])->onlyInput('username');
     }
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('admin.login');

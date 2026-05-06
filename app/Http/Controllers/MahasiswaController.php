@@ -25,6 +25,7 @@ class MahasiswaController extends Controller
             'alasan_memilih_pilihan_pertama' => 'required|string|max:2000',
             'pilihan_kedua'                  => 'required|string|max:255',
             'alasan_memilih_pilihan_kedua'   => 'required|string|max:2000',
+            'foto'                           => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ], [
             'nama_lengkap.required'                   => 'Nama lengkap wajib diisi.',
             'nim.required'                            => 'NIM wajib diisi.',
@@ -34,6 +35,10 @@ class MahasiswaController extends Controller
             'alasan_memilih_pilihan_pertama.required' => 'Alasan memilih pilihan 1 wajib diisi.',
             'pilihan_kedua.required'                  => 'Pilihan kedua wajib diisi.',
             'alasan_memilih_pilihan_kedua.required'   => 'Alasan memilih pilihan 2 wajib diisi.',
+            'foto.required'   => 'Foto wajib diisi.',
+            'foto.image'      => 'Foto harus berupa gambar.',
+            'foto.mimes'      => 'Foto harus berupa file dengan ekstensi: jpeg, png, jpg.',
+            'foto.max'        => 'Ukuran foto tidak boleh lebih dari 2MB.',
         ]);
 
         Registration::create($validated);

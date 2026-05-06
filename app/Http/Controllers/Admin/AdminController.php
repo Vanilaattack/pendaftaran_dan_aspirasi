@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Aspiration;
 use App\Models\Registration;
-use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -19,7 +18,14 @@ class AdminController extends Controller
 
     public function deleteRegistration($id)
     {
-        Registration::findOrFail($id)->delete();
+        $reg = Registration::findOrFail($id);
+
+        // Hapus file foto jika ada
+        if ($reg->foto && file_exists(public_path($reg->foto))) {
+            unlink(public_path($reg->foto));
+        }
+
+        $reg->delete();
 
         return redirect()->route('admin.dashboard')
             ->with('success', 'Data pendaftaran berhasil dihapus.');

@@ -108,6 +108,13 @@
                     @enderror
                 </div>
 
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Unggah Foto Profil</label>
+                    <input type="file" name="foto" accept="image/*" 
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-[#25B1E0] focus:border-[#25B1E0]">
+                    <p class="text-xs text-gray-500 mt-1">*Format: JPG, PNG (Maks. 2MB)</p>
+                </div>
+
                 <button type="submit"
                         class="btn-primary w-full text-white font-semibold text-sm py-3 rounded-xl mt-1
                                flex items-center justify-center gap-2">
